@@ -41,7 +41,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+          <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                 <state split_layout="SPLIT">
@@ -54,17 +54,14 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="london-tube.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="london-tube.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/london-tube.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="802">
-                  <caret line="670" column="38" lean-forward="false" selection-start-line="670" selection-start-column="38" selection-end-line="670" selection-end-column="38" />
+                <state relative-caret-position="394">
+                  <caret line="563" column="31" lean-forward="true" selection-start-line="563" selection-start-column="31" selection-end-line="563" selection-end-column="31" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
-                    <element signature="e#26012#28020#0" expanded="false" />
-                    <element signature="e#28088#28563#0" expanded="false" />
-                    <element signature="e#28609#28797#0" expanded="false" />
-                    <element signature="e#28875#29687#0" expanded="false" />
+                    <element signature="e#110#25946#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -77,13 +74,12 @@
           <file leaf-file-name="london-tube.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/london-tube.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="740">
-                  <caret line="669" column="0" lean-forward="false" selection-start-line="669" selection-start-column="0" selection-end-line="669" selection-end-column="0" />
+                <state relative-caret-position="726">
+                  <caret line="675" column="0" lean-forward="false" selection-start-line="675" selection-start-column="0" selection-end-line="675" selection-end-column="0" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
-                    <element signature="e#26012#28020#0" expanded="false" />
-                    <element signature="e#28088#28563#0" expanded="false" />
-                    <element signature="e#28609#28797#0" expanded="false" />
+                    <element signature="e#26012#28198#0" expanded="false" />
+                    <element signature="e#28822#29073#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -118,9 +114,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/london-tube.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/js/london-tube.js" />
       </list>
     </option>
   </component>
@@ -205,7 +201,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript.Linters.JSLint" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -306,12 +302,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1495046235662</updated>
-      <workItem from="1495046236783" duration="37160000" />
+      <workItem from="1495046236783" duration="38833000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37160000" />
+    <option name="totallyTimeSpent" value="38833000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -356,20 +352,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/london-tube.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="802">
-          <caret line="670" column="38" lean-forward="false" selection-start-line="670" selection-start-column="38" selection-end-line="670" selection-end-column="38" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#26012#28020#0" expanded="false" />
-            <element signature="e#28088#28563#0" expanded="false" />
-            <element signature="e#28609#28797#0" expanded="false" />
-            <element signature="e#28875#29687#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
@@ -391,6 +373,17 @@
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/london-tube.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="563" column="31" lean-forward="true" selection-start-line="563" selection-start-column="31" selection-end-line="563" selection-end-column="31" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#110#25946#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -2,7 +2,7 @@
  * Created by Goldfarb Development on 5/17/2017.
  */
 /*global jQuery*/
-(function(){
+(function($){
     var LondonTube = {
         lines: {
             Bakerloo: {
@@ -539,137 +539,142 @@
                 "Waterloo": "Bank"
             }
         }
-    };
+    },
+        getNextStop = function(lines, currentLocation, prevStop){
+            var nextStops = [],
+                fromCount,
+                previousStop = typeof prevStop !== 'undefined' ? prevStop : false,
+                fromWhere,
+                startFroms,
+                nextStop;
 
-    var getNextStop = function(lines, currentLocation, prevStop){
-        var nextStops = [],
-            fromCount,
-            previousStop = typeof prevStop !== 'undefined' ? prevStop : false,
-            fromWhere,
-            startFroms;
+            if(typeof currentLocation === 'string'){
+                fromCount = 1;
+            } else{
+                fromCount = currentLocation.length;
+            }
+            for(x = 0; x < fromCount; x++) {
+                for (line in lines) {
+                    startFroms = lines[line];
+                    for (startFrom in startFroms) {
+                        nextStop = startFroms[startFrom];
 
-        if(typeof currentLocation === 'string'){
-            fromCount = 1;
-        } else{
-            fromCount = currentLocation.length;
-        }
-        for(var x = 0; x < fromCount; x++) {
-            for (line in lines) {
-                startFroms = lines[line];
-                for (startFrom in startFroms) {
-                    var nextStop = startFroms[startFrom];
+                        if (typeof currentLocation === 'string'){
+                            fromWhere = currentLocation;
+                        } else{
+                            fromWhere = currentLocation[x];
+                        }
 
-                    if (typeof currentLocation === 'string'){
-                        fromWhere = currentLocation;
-                    } else{
-                        fromWhere = currentLocation[x];
-                    }
-
-                    if(typeof nextStop === 'object'){
-                        $.each(nextStop, function(nextStopIndex, nextStopValue){
-                            if ((fromWhere === startFrom && previousStop !== '') && (checkNextStopIsNotPreviousStop(nextStopValue, previousStop) === true)) {
-                                nextStops.push(nextStopValue);
-                            } else if ((fromWhere === nextStopValue  && previousStop !== '') && (checkNextStopIsNotPreviousStop(startFrom, previousStop) === true)) {
-                                nextStops.push(startFrom);
-                            }
-                        });
-                    } else if ((fromWhere === startFrom && previousStop !== '') && (checkNextStopIsNotPreviousStop(nextStop, previousStop) === true)) {
-                        nextStops.push(nextStop);
-                    } else if ((fromWhere === nextStop  && previousStop !== '') && (checkNextStopIsNotPreviousStop(startFrom, previousStop) === true)) {
-                        nextStops.push(startFrom);
+                        if(typeof nextStop === 'object'){
+                            $.each(nextStop, function(nextStopIndex, nextStopValue){
+                                if ((fromWhere === startFrom && previousStop !== '') && (checkNextStopIsNotPreviousStop(nextStopValue, previousStop) === true)) {
+                                    nextStops.push(nextStopValue);
+                                } else if ((fromWhere === nextStopValue  && previousStop !== '') && (checkNextStopIsNotPreviousStop(startFrom, previousStop) === true)) {
+                                    nextStops.push(startFrom);
+                                }
+                            });
+                        } else if ((fromWhere === startFrom && previousStop !== '') && (checkNextStopIsNotPreviousStop(nextStop, previousStop) === true)) {
+                            nextStops.push(nextStop);
+                        } else if ((fromWhere === nextStop  && previousStop !== '') && (checkNextStopIsNotPreviousStop(startFrom, previousStop) === true)) {
+                            nextStops.push(startFrom);
+                        }
                     }
                 }
             }
-        }
-        nextStops = removeDuplicates(nextStops).sort();
-        console.log(nextStops);
-        return nextStops;
-    };
+            nextStops = removeDuplicates(nextStops).sort();
+            console.log(nextStops);
+            return nextStops;
+        },
 
-    var checkNextStopIsNotPreviousStop = function (nStop, pStop) {
-        var pass = true;
-        if(pStop === false){
-            return pass;
-        }
-        if(typeof pStop === 'string'){
-            if(nStop === pStop){
-                return false
+        checkNextStopIsNotPreviousStop = function (nStop, pStop) {
+            var pass = true;
+            if(pStop === false){
+                return pass;
             }
-            return pass;
-        } else{
+            if(typeof pStop === 'string'){
+                if(nStop === pStop){
+                    return false;
+                }
+                return pass;
+            }
+
             $.each(pStop, function(pIndex, pValue){
                 if(pValue === nStop){
                     pass = false;
                     return false;
                 }
             });
-        }
-        return pass;
-    };
 
-    var removeDuplicates = function (names){
-        var uniqueNames = [];
-        $.each(names, function(i, el){
-            if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
-        });
-        return uniqueNames;
-    };
+            return pass;
+        },
 
-    var getAllPossibleStationsXStopsAway = function (startLocation, stops) {
-        var prevStops,
-            allPossibleStations;
-        for (z = 0; z < stops; z++){
-            var nextStops = getNextStop(LondonTube.lines, startLocation, prevStops);
-            prevStops = startLocation;
-            if(typeof prevStops === 'object'){
-                $.each(prevStops, function(prevStopsIndex, prevStopsValue){
-                    $.each(nextStops, function(nextStopsIndex, nextStopsValue){
-                        if(prevStopsValue === nextStopsValue){
-                            nextStops.splice(nextStopsIndex, 1);
-                        }
+        removeDuplicates = function (names){
+            var uniqueNames = [];
+            $.each(names, function(i, el){
+                if($.inArray(el, uniqueNames) === -1){
+                    uniqueNames.push(el);
+                }
+            });
+            return uniqueNames;
+        },
+
+        getAllPossibleStationsXStopsAway = function (startLocation, stops) {
+            var prevStops,
+                allPossibleStations,
+                nextStops;
+            for (var z = 0; z < stops; z++){
+                nextStops = getNextStop(LondonTube.lines, startLocation, prevStops);
+                prevStops = startLocation;
+                if(typeof prevStops === 'object'){
+                    $.each(prevStops, function(prevStopsIndex, prevStopsValue){
+                        $.each(nextStops, function(nextStopsIndex, nextStopsValue){
+                            if(prevStopsValue === nextStopsValue){
+                                nextStops.splice(nextStopsIndex, 1);
+                            }
+                        });
                     });
-                });
+                }
+                startLocation = nextStops;
             }
-            startLocation = nextStops;
-        }
 
-        allPossibleStations = startLocation;
-        console.log(allPossibleStations);
-        return allPossibleStations;
-    };
+            allPossibleStations = startLocation;
+            console.log(allPossibleStations);
+            return allPossibleStations;
+        },
 
-    var getAllStations = function(tubes) {
-        var stations = [];
-        for(tube in tubes){
-            for(station in tubes[tube]){
-                stations.push(station);
+        getAllStations = function(tubes) {
+            var stations = [];
+            for(tube in tubes){
+                for(station in tubes[tube]){
+                    stations.push(station);
+                }
             }
-        }
-        return removeDuplicates(stations).sort();
-    };
-    var tubeStations = getAllStations(LondonTube.lines);
+            return removeDuplicates(stations).sort();
+        },
+
+        tubeStations = getAllStations(LondonTube.lines),
+
+        displayStops = function () {
+            var initialLocation = $('#startingStation').val(),
+                numberStops = $('#stops').val(),
+                possibleStations = getAllPossibleStationsXStopsAway(initialLocation, numberStops),
+                ulPosstibleStops = $('#possibleStops');
+
+            ulPosstibleStops.html('');
+            if (typeof possibleStations === 'object') {
+                for (station in possibleStations) {
+                    ulPosstibleStops.append('<li>' + possibleStations[station] + '</li>');
+                }
+            } else {
+                ulPosstibleStops.append('<li>' + possibleStations + '</li>');
+            }
+        };
+
     $.each(tubeStations, function(tubeStationsIndex, tubeStation){
         $('#startingStation').append('<option val="' + tubeStation + '">' + tubeStation + '</option>' );
     });
 
-    var displayStops = function () {
-        var initialLocation = $('#startingStation').val(),
-            numberStops = $('#stops').val(),
-            possibleStations = getAllPossibleStationsXStopsAway(initialLocation, numberStops),
-            ulPosstibleStops = $('#possibleStops');
-
-        ulPosstibleStops.html('');
-        if (typeof possibleStations === 'object') {
-            for (station in possibleStations) {
-                ulPosstibleStops.append('<li>' + possibleStations[station] + '</li>');
-            }
-        } else {
-            ulPosstibleStops.append('<li>' + possibleStations + '</li>');
-        }
-    };
-
     $('#displayStops').click(function(){
         new displayStops();
     });
-
 }(jQuery));
