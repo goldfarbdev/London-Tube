@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>London Tube</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="container">
+        <h1>London Tube</h1>
+
+        <p>Given a list of London Tube stations and lines, write an application to answer the following question: 
+
+        What stations are N stops from East Ham?  For stations with multiple routes include the station only
+
+            if the minimum number of stops = N.  Print out the results in alphabetical order.</p>
+
+        <p>For example, if N = 5, the complete answer would be:</p>
+<ul>
+        <li>Bow Road</li>
+        <li>Dagenham East</li>
+        <li>East India</li>
+        <li>Hackney Wick</li>
+        <li>Leyton</li>
+        <li>Leyton Midland Road</li>
+        <li>Mile End</li>
+        <li>North Greenwich</li>
+        <li>Pudding Mill Lane</li>
+        <li>Royal Victoria</li>
+        <li>Stratford High Street</li>
+        <li>Stratford International</li>
+        <li>West Silvertown</li>
+</ul>
+     <p>For example, Canning Town from East Ham is possible with 4 or 5 stops, but we only consider it a
+
+         valid answer for 4 stops, not 5, since we only consider the minimum number of stops.</p>
+
+        <p>You may use any language and tools to write your application but please use GitHub.com to store your code.
+
+        <h4>Resources</h4>
+<ul>
+    <li>London Tube Map: <a target="_blank" href="https://tfl.gov.uk/cdn/static/cms/images/tube-map.gif">https://tfl.gov.uk/cdn/static/cms/images/tube-map.gif</a></li>
+    <li>List of Tube stations: <a target="_blank" href="https://www.doogal.co.uk/london_stations.php">https://www.doogal.co.uk/london_stations.php</a> (select &quot;Download&quot; then &quot;Tube line data CSV&quot; to download a list of stations and their lines)</li>
+</ul>
+        <div class="input-group">
+            <label for="startingStation">Pick a Starting Station
+            <select id="startingStation"></select></label>
+        </div>
+        <br/>
+        <div class="input-group">
+            <label for="stops">Choose number of stops
+            <input id="stops" type="number" placeholder="1"/></label>
+        </div>
+        <p id="displayStops"><a href="#possibleStops" class="btn btn-primary btn-lg">Display All Possible Stops</a></p>
+    </div>
+    <div class="container">
+        <ul id="possibleStops"></ul>
+    </div>
+    <script src="js/london-tube.js"></script>
+</body>
+</html>
